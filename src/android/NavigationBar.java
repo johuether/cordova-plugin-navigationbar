@@ -308,7 +308,7 @@ public class NavigationBar extends CordovaPlugin {
                     uiOptions = uiOptions & ~0x00000010;
                 }
 
-                if(Build.VERSION.SDK_INT >= 30 && transparentNavigationBar) 
+                if(transparentNavigationBar) 
                     uiOptions = uiOptions | 0x00000200; // window.addFlags(0x00000200);
                 else
                     uiOptions = uiOptions & ~0x00000200; // window.clearFlags(0x00000200);
@@ -316,7 +316,7 @@ public class NavigationBar extends CordovaPlugin {
                 decorView.setSystemUiVisibility(uiOptions);
 
                 try {
-                    window.setNavigationBarColor(Build.VERSION.SDK_INT >= 30 && transparentNavigationBar ? Color.TRANSPARENT : Color.parseColor(colorPref));
+                    window.setNavigationBarColor(transparentNavigationBar ? Color.TRANSPARENT : Color.parseColor(colorPref));
                 } catch (IllegalArgumentException ignore) {
                     LOG.e(TAG, "Invalid hexString argument, use f.i. '#999999'");
                 } catch (Exception ignore) {
